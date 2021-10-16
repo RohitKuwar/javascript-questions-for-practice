@@ -563,3 +563,34 @@ Then the call stack is empty. Promises are microtasks so they are resolved first
 
 Now, since `funcTwo` popped off the call stack, the call stack is empty. The callbacks waiting in the queue `(() => console.log("Timeout 1!")` from `funcOne`, and `() => console.log("Timeout 2!")` from `funcTwo`) get added to the call stack one by one. The first callback logs` Timeout 1!`, and gets popped off the stack. Then, the second callback logs `Timeout 2!`, and gets popped off the stack.
 <hr />
+
+30. Which of the following will modify the `person` object?
+```
+const person = { name: 'Lydia Hallie' };
+
+Object.seal(person);
+```
+**Ans:** `person.name = "Evan Bacon"`
+
+With `Object.seal` we can prevent new properies from being added, or existing properties to be removed.
+
+However, you can still modify the value of existing properties.
+<hr />
+
+31. Which of the following will modify the `person` object?
+```
+const person = {
+  name: 'Lydia Hallie',
+  address: {
+    street: '100 Main St',
+  },
+};
+
+Object.freeze(person);
+```
+**Ans:** `person.address.street = "101 Main St"`
+
+The `Object.freeze` method freezes an object. No properties can be added, modified, or removed.
+
+However, it only shallowly freezes the object, meaning that only direct properties on the object are frozen. If the property is another object, like `address` in this case, the properties on that object aren't frozen, and can be modified.
+<hr />
