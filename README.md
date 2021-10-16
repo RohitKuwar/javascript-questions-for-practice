@@ -475,3 +475,39 @@ With the await keyword in `secondFunction`, we literally pause the execution of 
 
 This means that it waited for the `myPromise` to resolve with the value `I have resolved`, and only once that happened, we moved to the next line: `second` got logged.
 <hr />
+
+26. What's the output?
+```
+Promise.resolve(5);
+```
+**Ans:** `Promise {<fulfilled>: 5}`
+
+We can pass any type of value we want to `Promise.resolve`, either a promise or a non-promise. The method itself returns a promise with the resolved value (`<fulfilled>`). If you pass a regular function, it'll be a resolved promise with a regular value. If you pass a promise, it'll be a resolved promise with the resolved value of that passed promise.
+
+In this case, we just passed the numerical value `5`. It returns a resolved promise with the value `5`.
+<hr />
+
+27. What's the output?
+```
+function compareMembers(person1, person2 = person) {
+  if (person1 !== person2) {
+    console.log('Not the same!');
+  } else {
+    console.log('They are the same!');
+  }
+}
+
+const person = { name: 'Lydia' };
+
+compareMembers(person);
+```
+**Ans:** `They are the same!`
+
+Objects are passed by reference. When we check objects for strict equality (`===`), we're comparing their references.
+
+We set the default value for `person2` equal to the `person` object, and passed the `person` object as the value for `person1`.
+
+This means that both values have a reference to the same spot in memory, thus they are equal.
+
+The code block in the `else` statement gets run, and `They are the same!` gets logged.
+<hr />
