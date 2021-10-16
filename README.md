@@ -511,3 +511,55 @@ This means that both values have a reference to the same spot in memory, thus th
 
 The code block in the `else` statement gets run, and `They are the same!` gets logged.
 <hr />
+
+28. What's the output?
+```
+let config = {
+  alert: setInterval(() => {
+    console.log('Alert!');
+  }, 1000),
+};
+
+config = null;
+```
+**Ans:** `The setInterval callback will still be called every second`
+
+Normally when we set objects equal to `null`, those objects get garbage collected as there is no reference anymore to that object. However, since the callback function within `setInterval` is an arrow function (thus bound to the `config` object), the callback function still holds a reference to the `config` object. As long as there is a reference, the object won't get garbage collected. Since this is an interval, setting `config` to `null` or `delete`-ing `config.alert` won't garbage-collect the interval, so the interval will still be called. It should be cleared with `clearInterval(config.alert)` to remove it from memory. Since it was not cleared, the `setInterval` callback function will still get invoked every 1000ms (1s).
+<hr />
+
+29. What's the output?
+```
+const myPromise = Promise.resolve(Promise.resolve('Promise'));
+
+function funcOne() {
+  setTimeout(() => console.log('Timeout 1!'), 0);
+  myPromise.then(res => res).then(res => console.log(`${res} 1!`));
+  console.log('Last line 1!');
+}
+
+async function funcTwo() {
+  const res = await myPromise;
+  console.log(`${res} 2!`)
+  setTimeout(() => console.log('Timeout 2!'), 0);
+  console.log('Last line 2!');
+}
+
+funcOne();
+funcTwo();
+```
+**Ans:** `Last line 1! Promise 2! Last line 2! Promise 1! Timeout 1! Timeout 2!`
+
+First, we invoke `funcOne`. On the first line of `funcOne`, we call the asynchronous `setTimeout` function, from which the callback is sent to the Web API. (see my article on the event loop here.)
+
+Then we call the `myPromise` promise, which is an asynchronous operation.
+
+Both the promise and the timeout are asynchronous operations, the function keeps on running while it's busy completing the promise and handling the `setTimeout` callback. This means that `Last line 1!` gets logged first, since this is not an asynchonous operation.
+
+Since the callstack is not empty yet, the `setTimeout` function and promise in `funcOne` cannot get added to the callstack yet.
+
+In `funcTwo`, the variable `res` gets `Promise` because `Promise.resolve(Promise.resolve('Promise'))` is equivalent to `Promise.resolve('Promise')` since resolving a promise just resolves it's value. The `await` in this line stops the execution of the function until it receives the resolution of the promise and then keeps on running synchronously until completion, so `Promise 2!` and then `Last line 2!` are logged and the `setTimeout` is sent to the Web API.
+
+Then the call stack is empty. Promises are microtasks so they are resolved first when the call stack is empty so `Promise 1!` gets to be logged.
+
+Now, since `funcTwo` popped off the call stack, the call stack is empty. The callbacks waiting in the queue `(() => console.log("Timeout 1!")` from `funcOne`, and `() => console.log("Timeout 2!")` from `funcTwo`) get added to the call stack one by one. The first callback logs` Timeout 1!`, and gets popped off the stack. Then, the second callback logs `Timeout 2!`, and gets popped off the stack.
+<hr />
