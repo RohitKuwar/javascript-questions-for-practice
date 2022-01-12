@@ -7,9 +7,27 @@ d = c;
 c.greeting = 'Hello';
 console.log(d.greeting);
 ```
-**Ans:** `Hello` 
+- A: `Hello`
+- B: `Hey!`
+- C: `undefined`
+- D: `ReferenceError`
+- E: `TypeError`
 
-In JavaScript, all objects interact by reference when setting them equal to each other. First, variable c holds a value to an object. Later, we assign d with the same reference that c has to the object. When you change one object, you change all of them.
+<details><summary><b>Answer</b></summary>
+<p>
+
+#### Answer: A
+
+In JavaScript, all objects interact by _reference_ when setting them equal to each other.
+
+First, variable `c` holds a value to an object. Later, we assign `d` with the same reference that `c` has to the object.
+
+<img src="https://i.imgur.com/ko5k0fs.png" width="200">
+
+When you change one object, you change all of them.
+
+</p>
+</details>
 <hr />
 
 2. What happens when we do this?
