@@ -38,9 +38,22 @@ function bark() {
 
 bark.animal = 'dog';
 ```
-**Ans:** `Nothing, this is totally fine!`
+- A: Nothing, this is totally fine!
+- B: `SyntaxError`. You cannot add properties to a function this way.
+- C: `"Woof"` gets logged.
+- D: `ReferenceError`
 
-This is possible in JavaScript, because functions are objects! (Everything besides primitive types are objects). A function is a special type of object. The code you write yourself isn't the actual function. The function is an object with properties. This property is invocable.
+<details><summary><b>Answer</b></summary>
+<p>
+
+#### Answer: A
+
+This is possible in JavaScript, because functions are objects! (Everything besides primitive types are objects)
+
+A function is a special type of object. The code you write yourself isn't the actual function. The function is an object with properties. This property is invocable.
+
+</p>
+</details>
 <hr />
 
 3. What's the output?
@@ -57,15 +70,28 @@ Person.getFullName = function() {
 
 console.log(member.getFullName());
 ```
-**Ans:** `TypeError`
+- A: `TypeError`
+- B: `SyntaxError`
+- C: `Lydia Hallie`
+- D: `undefined` `undefined`
 
-In JavaScript, functions are objects, and therefore, the method getFullName gets added to the constructor function object itself. For that reason, we can call Person.getFullName(), but member.getFullName throws a TypeError.
+<details><summary><b>Answer</b></summary>
+<p>
+
+#### Answer: A
+
+In JavaScript, functions are objects, and therefore, the method `getFullName` gets added to the constructor function object itself. For that reason, we can call `Person.getFullName()`, but `member.getFullName` throws a `TypeError`. 
+
 If you want a method to be available to all object instances, you have to add it to the prototype property:
-```
+
+```js
 Person.prototype.getFullName = function() {
   return `${this.firstName} ${this.lastName}`;
 };
 ```
+
+</p>
+</details>
 <hr />
 
 4. What's the output?
@@ -81,10 +107,22 @@ const sarah = Person('Sarah', 'Smith');
 console.log(lydia);
 console.log(sarah);
 ```
-**Ans:** `Person {firstName: "Lydia", lastName: "Hallie"}` and `undefined`
+- A: `Person {firstName: "Lydia", lastName: "Hallie"}` and `undefined`
+- B: `Person {firstName: "Lydia", lastName: "Hallie"}` and `Person {firstName: "Sarah", lastName: "Smith"}`
+- C: `Person {firstName: "Lydia", lastName: "Hallie"}` and `{}`
+- D: `Person {firstName: "Lydia", lastName: "Hallie"}` and `ReferenceError`
 
-For `sarah`, we didn't use the `new` keyword. When using `new`, `this` refers to the new empty object we create. However, if you don't add `new`, `this` refers to the **global object!**
+<details><summary><b>Answer</b></summary>
+<p>
+
+#### Answer: A
+
+For `sarah`, we didn't use the `new` keyword. When using `new`, `this` refers to the new empty object we create. However, if you don't add `new`, `this` refers to the **global object**!
+
 We said that `this.firstName` equals `"Sarah"` and `this.lastName` equals `"Smith"`. What we actually did, is defining `global.firstName = 'Sarah'` and `global.lastName = 'Smith'`. `sarah` itself is left `undefined`, since we don't return a value from the `Person` function.
+
+</p>
+</details>
 <hr />
 
 5. What's the output?
@@ -101,11 +139,23 @@ function checkAge(data) {
 
 checkAge({ age: 18 });
 ```
-**Ans:** `Hmmm... You don't have an age I guess`
+- A: `You are an adult!`
+- B: `You are still an adult.`
+- C: `Hmm.. You don't have an age I guess`
 
-When testing equality, primitives are compared by their value, while objects are compared by their reference. JavaScript checks if the objects have a reference to the same location in memory.
+<details><summary><b>Answer</b></summary>
+<p>
+
+#### Answer: C
+
+When testing equality, primitives are compared by their _value_, while objects are compared by their _reference_. JavaScript checks if the objects have a reference to the same location in memory.
+
 The two objects that we are comparing don't have that: the object we passed as a parameter refers to a different location in memory than the object we used in order to check equality.
+
 This is why both `{ age: 18 } === { age: 18 }` and `{ age: 18 } == { age: 18 }` return `false`.
+
+</p>
+</details>
 <hr />
 
 6. What's the output?
@@ -114,9 +164,20 @@ const obj = { a: 'one', b: 'two', a: 'three' };
 console.log(obj);
 
 ```
-**Ans:** `{ a: "three", b: "two" }`
+- A: `{ a: "one", b: "two" }`
+- B: `{ b: "two", a: "three" }`
+- C: `{ a: "three", b: "two" }`
+- D: `SyntaxError`
+
+<details><summary><b>Answer</b></summary>
+<p>
+
+#### Answer: C
 
 If you have two keys with the same name, the key will be replaced. It will still be in its first position, but with the last specified value.
+
+</p>
+</details>
 <hr />
 
 7. What's the output?
@@ -129,18 +190,41 @@ const name = 'Lydia';
 
 name.giveLydiaPizza();
 ```
-**Ans:** `"Just give Lydia pizza already!"`
+- A: `"Just give Lydia pizza already!"`
+- B: `TypeError: not a function`
+- C: `SyntaxError`
+- D: `undefined`
+
+<details><summary><b>Answer</b></summary>
+<p>
+
+#### Answer: A
 
 `String` is a built-in constructor, which we can add properties to. I just added a method to its prototype. Primitive strings are automatically converted into a string object, generated by the string prototype function. So, all strings (string objects) have access to that method!
+
+</p>
+</details>
 <hr />
 
 8. What's the output?
 ```
 console.log(typeof typeof 1);
 ```
-**Ans:** `"string"`
+- A: `"number"`
+- B: `"string"`
+- C: `"object"`
+- D: `"undefined"`
 
-`typeof 1` returns `"number"`. `typeof "number"` returns `"string"`
+<details><summary><b>Answer</b></summary>
+<p>
+
+#### Answer: B
+
+`typeof 1` returns `"number"`.
+`typeof "number"` returns `"string"`
+
+</p>
+</details>
 <hr />
 
 9. What's the output?
@@ -157,13 +241,24 @@ getInfo(person, birthYear);
 
 console.log(person, birthYear);
 ```
-**Ans:** `{ name: "Lydia" }, "1997"`
+- A: `{ name: "Lydia" }, "1997"`
+- B: `{ name: "Sarah" }, "1998"`
+- C: `{ name: "Lydia" }, "1998"`
+- D: `{ name: "Sarah" }, "1997"`
 
-Arguments are passed by value, unless their value is an object, then they're passed by reference. `birthYear` is passed by value, since it's a string, not an object. When we pass arguments by value, a copy of that value is created.
+<details><summary><b>Answer</b></summary>
+<p>
+
+#### Answer: A
+
+Arguments are passed by _value_, unless their value is an object, then they're passed by _reference_. `birthYear` is passed by value, since it's a string, not an object. When we pass arguments by value, a _copy_ of that value is created (see question 46).
 
 The variable `birthYear` has a reference to the value `"1997"`. The argument `year` also has a reference to the value `"1997"`, but it's not the same value as `birthYear` has a reference to. When we update the value of `year` by setting `year` equal to `"1998"`, we are only updating the value of `year`. `birthYear` is still equal to `"1997"`.
 
-The value of `person` is an object. The argument `member` has a (copied) reference to the same object. When we modify a property of the object `member` has a reference to, the value of `person` will also be modified, since they both have a reference to the same object. `person`'s `name` property is now equal to the value `"Lydia"`.
+The value of `person` is an object. The argument `member` has a (copied) reference to the _same_ object. When we modify a property of the object `member` has a reference to, the value of `person` will also be modified, since they both have a reference to the same object. `person`'s `name` property is now equal to the value `"Lydia"`
+
+</p>
+</details>
 <hr />
 
 10. What's the output?
@@ -183,11 +278,22 @@ function sayHi() {
 
 sayHi();
 ```
-**Ans:** `Oh no an error: Hello world!`
+- A: `It worked! Hello world!`
+- B: `Oh no an error: undefined`
+- C: `SyntaxError: can only throw Error objects`
+- D: `Oh no an error: Hello world!`
 
-With the `throw` statement, we can create custom errors. With this statement, you can throw exceptions. An exception can be a string, a number, a boolean or an object. In this case, our exception is the string `'Hello world!'`.
+<details><summary><b>Answer</b></summary>
+<p>
 
-With the catch statement, we can specify what to do if an exception is thrown in the `try` block. An exception is thrown: the string `'Hello world!'`. `e` is now equal to that string, which we log. This results in `'Oh no an error: Hello world!'`.
+#### Answer: D
+
+With the `throw` statement, we can create custom errors. With this statement, you can throw exceptions. An exception can be a <b>string</b>, a <b>number</b>, a <b>boolean</b> or an <b>object</b>. In this case, our exception is the string `'Hello world!'`.
+
+With the `catch` statement, we can specify what to do if an exception is thrown in the `try` block. An exception is thrown: the string `'Hello world!'`. `e` is now equal to that string, which we log. This results in `'Oh an error: Hello world!'`.
+
+</p>
+</details>
 <hr />
 
 11. What's the output?
