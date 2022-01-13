@@ -306,9 +306,20 @@ function Car() {
 const myCar = new Car();
 console.log(myCar.make);
 ```
-**Ans:** `"Maserati"`
+- A: `"Lamborghini"`
+- B: `"Maserati"`
+- C: `ReferenceError`
+- D: `TypeError`
 
-When you return a property, the value of the property is equal to the returned value, not the value set in the constructor function. We return the string `"Maserati"`, so `myCar.make` is equal to `"Maserati"`.
+<details><summary><b>Answer</b></summary>
+<p>
+
+#### Answer: B
+
+When you return a property, the value of the property is equal to the _returned_ value, not the value set in the constructor function. We return the string `"Maserati"`, so `myCar.make` is equal to `"Maserati"`.
+
+</p>
+</details>
 <hr />
 
 12. What's the output?
@@ -319,10 +330,22 @@ age = 21;
 console.log(delete name);
 console.log(delete age);
 ```
-**Ans:** `false`, `true`
+- A: `false`, `true`
+- B: `"Lydia"`, `21`
+- C: `true`, `true`
+- D: `undefined`, `undefined`
+
+<details><summary><b>Answer</b></summary>
+<p>
+
+#### Answer: A
 
 The `delete` operator returns a boolean value: `true` on a successful deletion, else it'll return `false`. However, variables declared with the `var`, `const` or `let` keyword cannot be deleted using the `delete` operator.
+
 The `name` variable was declared with a `const` keyword, so its deletion is not successful: `false` is returned. When we set `age` equal to `21`, we actually added a property called `age` to the global object. You can successfully delete properties from objects this way, also the global object, so `delete age` returns `true`.
+
+</p>
+</details>
 <hr />
 
 13. What's the output?
@@ -332,9 +355,20 @@ const admin = { admin: true, ...user };
 
 console.log(admin);
 ```
-**Ans:** `{ admin: true, name: "Lydia", age: 21 }`
+- A: `{ admin: true, user: { name: "Lydia", age: 21 } }`
+- B: `{ admin: true, name: "Lydia", age: 21 }`
+- C: `{ admin: true, user: ["Lydia", 21] }`
+- D: `{ admin: true }`
+
+<details><summary><b>Answer</b></summary>
+<p>
+
+#### Answer: B
 
 It's possible to combine objects using the spread operator `...`. It lets you create copies of the key/value pairs of one object, and add them to another object. In this case, we create copies of the `user` object, and add them to the `admin` object. The `admin` object now contains the copied key/value pairs, which results in `{ admin: true, name: "Lydia", age: 21 }`.
+
+</p>
+</details>
 <hr />
 
 14. What's the output?
@@ -348,22 +382,41 @@ const settings = {
 const data = JSON.stringify(settings, ['level', 'health']);
 console.log(data);
 ```
-**Ans:** `"{"level":19, "health":90}"`
+- A: `"{"level":19, "health":90}"`
+- B: `"{"username": "lydiahallie"}"`
+- C: `"["level", "health"]"`
+- D: `"{"username": "lydiahallie", "level":19, "health":90}"`
 
-The second argument of `JSON.stringify` is the replacer. The replacer can either be a function or an array, and lets you control what and how the values should be stringified.
+<details><summary><b>Answer</b></summary>
+<p>
 
-If the replacer is an array, only the property names included in the array will be added to the JSON string. In this case, only the properties with the names `"level"` and `"health"` are included, `"username"` is excluded. `data` is now equal to `"{"level":19, "health":90}"`.
+#### Answer: A
 
-If the replacer is a function, this function gets called on every property in the object you're stringifying. The value returned from this function will be the value of the property when it's added to the JSON string. If the value is `undefined`, this property is excluded from the JSON string.
+The second argument of `JSON.stringify` is the _replacer_. The replacer can either be a function or an array, and lets you control what and how the values should be stringified.
+
+If the replacer is an _array_, only the property names included in the array will be added to the JSON string. In this case, only the properties with the names `"level"` and `"health"` are included, `"username"` is excluded. `data` is now equal to `"{"level":19, "health":90}"`.
+
+If the replacer is a _function_, this function gets called on every property in the object you're stringifying. The value returned from this function will be the value of the property when it's added to the JSON string. If the value is `undefined`, this property is excluded from the JSON string.
+
+</p>
+</details>
 <hr />
 
 15. What's the output?
 ```
 [1, 2, 3, 4].reduce((x, y) => console.log(x, y));
 ```
-**Ans:** `1` `2` and `undefined` `3` and `undefined` `4`
+- A: `1` `2` and `3` `3` and `6` `4`
+- B: `1` `2` and `2` `3` and `3` `4`
+- C: `1` `undefined` and `2` `undefined` and `3` `undefined` and `4` `undefined`
+- D: `1` `2` and `undefined` `3` and `undefined` `4`
 
-The first argument that the `reduce` method receives is the accumulator, `x` in this case. The second argument is the current value, `y`. With the reduce method, we execute a callback function on every element in the array, which could ultimately result in one single value.
+<details><summary><b>Answer</b></summary>
+<p>
+
+#### Answer: D
+
+The first argument that the `reduce` method receives is the _accumulator_, `x` in this case. The second argument is the _current value_, `y`. With the reduce method, we execute a callback function on every element in the array, which could ultimately result in one single value.
 
 In this example, we are not returning any values, we are simply logging the values of the accumulator and the current value.
 
@@ -374,6 +427,9 @@ On the first call, the accumulator (`x`) is `1`, and the current value (`y`) is 
 If you don't return a value from a function, it returns `undefined`. On the next call, the accumulator is `undefined`, and the current value is `3`. `undefined` and `3` get logged.
 
 On the fourth call, we again don't return from the callback function. The accumulator is again `undefined`, and the current value is `4`. `undefined` and `4` get logged.
+
+</p>
+</details>
 <hr />
 
 16. What's the output?
@@ -387,11 +443,22 @@ console.log(sum(1, 2));
 console.log('running sum.js');
 export const sum = (a, b) => a + b;
 ```
-**Ans:** `running sum.js`, `running index.js`, `3`
+- A: `running index.js`, `running sum.js`, `3`
+- B: `running sum.js`, `running index.js`, `3`
+- C: `running sum.js`, `3`, `running index.js`
+- D: `running index.js`, `undefined`, `running sum.js`
 
-With the `import` keyword, all imported modules are pre-parsed. This means that the imported modules get run first, the code in the file which imports the module gets executed after.
+<details><summary><b>Answer</b></summary>
+<p>
+
+#### Answer: B
+
+With the `import` keyword, all imported modules are _pre-parsed_. This means that the imported modules get run _first_, the code in the file which imports the module gets executed _after_.
 
 This is a difference between `require()` in CommonJS and `import`! With `require()`, you can load dependencies on demand while the code is being run. If we would have used `require` instead of `import`, `running index.js`, `running sum.js`, `3` would have been logged to the console.
+
+</p>
+</details>
 <hr />
 
 17. What's the output?
@@ -403,7 +470,15 @@ async function getData() {
 const data = getData();
 console.log(data);
 ```
-**Ans:** `Promise {<pending>}`
+- A: `"I made it!"`
+- B: `Promise {<resolved>: "I made it!"}`
+- C: `Promise {<pending>}`
+- D: `undefined`
+
+<details><summary><b>Answer</b></summary>
+<p>
+
+#### Answer: C
 
 An async function always returns a promise. The `await` still has to wait for the promise to resolve: a pending promise gets returned when we call `getData()` in order to set `data` equal to it.
 
@@ -412,6 +487,9 @@ If we wanted to get access to the resolved value `"I made it"`, we could have us
 `data.then(res => console.log(res))`
 
 This would've logged `"I made it!"`
+
+</p>
+</details>
 <hr />
 
 18. What's the output?
@@ -434,17 +512,28 @@ console.log(addFunction(10));
 console.log(addFunction(10));
 console.log(addFunction(5 * 2));
 ```
-**Ans:** `Calculated! 20` `From cache! 20` `From cache! 20`
+- A: `Calculated! 20` `Calculated! 20` `Calculated! 20`
+- B: `Calculated! 20` `From cache! 20` `Calculated! 20`
+- C: `Calculated! 20` `From cache! 20` `From cache! 20`
+- D: `Calculated! 20` `From cache! 20` `Error`
 
-The `add` function is a memoized function. With memoization, we can cache the results of a function in order to speed up its execution. In this case, we create a `cache` object that stores the previously returned values.
+<details><summary><b>Answer</b></summary>
+<p>
+
+#### Answer: C
+
+The `add` function is a _memoized_ function. With memoization, we can cache the results of a function in order to speed up its execution. In this case, we create a `cache` object that stores the previously returned values.
 
 If we call the `addFunction` function again with the same argument, it first checks whether it has already gotten that value in its cache. If that's the case, the caches value will be returned, which saves on execution time. Else, if it's not cached, it will calculate the value and store it afterwards.
 
-We call the `addFunction` function three times with the same value: on the first invocation, the value of the function when num is equal to 10 isn't cached yet. The condition of the if-statement `num in cache` returns `false`, and the else block gets executed: `Calculated! 20` gets logged, and the value of the result gets added to the `cache` object. cache now looks like `{ 10: 20 }`.
+We call the `addFunction` function three times with the same value: on the first invocation, the value of the function when `num` is equal to `10` isn't cached yet. The condition of the if-statement `num in cache` returns `false`, and the else block gets executed: `Calculated! 20` gets logged, and the value of the result gets added to the cache object. `cache` now looks like `{ 10: 20 }`.
 
 The second time, the `cache` object contains the value that gets returned for `10`. The condition of the if-statement `num in cache` returns `true`, and `'From cache! 20'` gets logged.
 
 The third time, we pass `5 * 2` to the function which gets evaluated to `10`. The `cache` object contains the value that gets returned for `10`. The condition of the if-statement `num in cache` returns `true`, and `'From cache! 20'` gets logged.
+
+</p>
+</details>
 <hr />
 
 19. What's the output?
@@ -459,15 +548,26 @@ city = 'Amsterdam';
 
 console.log(person);
 ```
-**Ans:** `{ name: "Lydia", age: 21 }`
+- A: `{ name: "Lydia", age: 21 }`
+- B: `{ name: "Lydia", age: 21, city: "Amsterdam" }`
+- C: `{ name: "Lydia", age: 21, city: undefined }`
+- D: `"Amsterdam"`
+
+<details><summary><b>Answer</b></summary>
+<p>
+
+#### Answer: A
 
 We set the variable `city` equal to the value of the property called `city` on the `person` object. There is no property on this object called `city`, so the variable `city` has the value of `undefined`.
 
-Note that we are not referencing the `person` object itself! We simply set the variable `city` equal to the current value of the `city` property on the `person` object.
+Note that we are _not_ referencing the `person` object itself! We simply set the variable `city` equal to the current value of the `city` property on the `person` object.
 
-Then, we set `city` equal to the string `"Amsterdam"`. This doesn't change the `person` object: there is no reference to that object.
+Then, we set `city` equal to the string `"Amsterdam"`. This doesn't change the person object: there is no reference to that object.
 
 When logging the `person` object, the unmodified object gets returned.
+
+</p>
+</details>
 <hr />
 
 20. What's the output?
@@ -484,9 +584,20 @@ function checkAge(age) {
 
 console.log(checkAge(21));
 ```
-**Ans:** `ReferenceError`
+- A: `"Sorry, you're too young."`
+- B: `"Yay! You're old enough!"`
+- C: `ReferenceError`
+- D: `undefined`
 
-Variables with the `const` and `let` keyword are block-scoped. A block is anything between curly brackets (`{ }`). In this case, the curly brackets of the if/else statements. You cannot reference a variable outside of the block it's declared in, a ReferenceError gets thrown.
+<details><summary><b>Answer</b></summary>
+<p>
+
+#### Answer: C
+
+Variables with the `const` and `let` keyword are _block-scoped_. A block is anything between curly brackets (`{ }`). In this case, the curly brackets of the if/else statements. You cannot reference a variable outside of the block it's declared in, a ReferenceError gets thrown.
+
+</p>
+</details>
 <hr />
 
 21. What's the output?
