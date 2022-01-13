@@ -1,5 +1,5 @@
 1. What's the output?
-```
+```javascript
 let c = { greeting: 'Hey!' };
 let d;
 
@@ -31,7 +31,7 @@ When you change one object, you change all of them.
 <hr />
 
 2. What happens when we do this?
-```
+```javascript
 function bark() {
   console.log('Woof!');
 }
@@ -57,7 +57,7 @@ A function is a special type of object. The code you write yourself isn't the ac
 <hr />
 
 3. What's the output?
-```
+```javascript
 function Person(firstName, lastName) {
   this.firstName = firstName;
   this.lastName = lastName;
@@ -95,7 +95,7 @@ Person.prototype.getFullName = function() {
 <hr />
 
 4. What's the output?
-```
+```javascript
 function Person(firstName, lastName) {
   this.firstName = firstName;
   this.lastName = lastName;
@@ -126,7 +126,7 @@ We said that `this.firstName` equals `"Sarah"` and `this.lastName` equals `"Smit
 <hr />
 
 5. What's the output?
-```
+```javascript
 function checkAge(data) {
   if (data === { age: 18 }) {
     console.log('You are an adult!');
@@ -159,7 +159,7 @@ This is why both `{ age: 18 } === { age: 18 }` and `{ age: 18 } == { age: 18 }` 
 <hr />
 
 6. What's the output?
-```
+```javascript
 const obj = { a: 'one', b: 'two', a: 'three' };
 console.log(obj);
 
@@ -181,7 +181,7 @@ If you have two keys with the same name, the key will be replaced. It will still
 <hr />
 
 7. What's the output?
-```
+```javascript
 String.prototype.giveLydiaPizza = () => {
   return 'Just give Lydia pizza already!';
 };
@@ -207,7 +207,7 @@ name.giveLydiaPizza();
 <hr />
 
 8. What's the output?
-```
+```javascript
 console.log(typeof typeof 1);
 ```
 - A: `"number"`
@@ -228,7 +228,7 @@ console.log(typeof typeof 1);
 <hr />
 
 9. What's the output?
-```
+```javascript
 function getInfo(member, year) {
   member.name = 'Lydia';
   year = '1998';
@@ -262,7 +262,7 @@ The value of `person` is an object. The argument `member` has a (copied) referen
 <hr />
 
 10. What's the output?
-```
+```javascript
 function greeting() {
   throw 'Hello world!';
 }
@@ -297,7 +297,7 @@ With the `catch` statement, we can specify what to do if an exception is thrown 
 <hr />
 
 11. What's the output?
-```
+```javascript
 function Car() {
   this.make = 'Lamborghini';
   return { make: 'Maserati' };
@@ -323,7 +323,7 @@ When you return a property, the value of the property is equal to the _returned_
 <hr />
 
 12. What's the output?
-```
+```javascript
 const name = 'Lydia';
 age = 21;
 
@@ -349,7 +349,7 @@ The `name` variable was declared with a `const` keyword, so its deletion is not 
 <hr />
 
 13. What's the output?
-```
+```javascript
 const user = { name: 'Lydia', age: 21 };
 const admin = { admin: true, ...user };
 
@@ -372,7 +372,7 @@ It's possible to combine objects using the spread operator `...`. It lets you cr
 <hr />
 
 14. What's the output?
-```
+```javascript
 const settings = {
   username: 'lydiahallie',
   level: 19,
@@ -403,7 +403,7 @@ If the replacer is a _function_, this function gets called on every property in 
 <hr />
 
 15. What's the output?
-```
+```javascript
 [1, 2, 3, 4].reduce((x, y) => console.log(x, y));
 ```
 - A: `1` `2` and `3` `3` and `6` `4`
@@ -433,7 +433,7 @@ On the fourth call, we again don't return from the callback function. The accumu
 <hr />
 
 16. What's the output?
-```
+```javascript
 // index.js
 console.log('running index.js');
 import { sum } from './sum.js';
@@ -462,7 +462,7 @@ This is a difference between `require()` in CommonJS and `import`! With `require
 <hr />
 
 17. What's the output?
-```
+```javascript
 async function getData() {
   return await Promise.resolve('I made it!');
 }
@@ -493,7 +493,7 @@ This would've logged `"I made it!"`
 <hr />
 
 18. What's the output?
-```
+```javascript
 const add = () => {
   const cache = {};
   return num => {
@@ -537,7 +537,7 @@ The third time, we pass `5 * 2` to the function which gets evaluated to `10`. Th
 <hr />
 
 19. What's the output?
-```
+```javascript
 const person = {
   name: 'Lydia',
   age: 21,
@@ -571,7 +571,7 @@ When logging the `person` object, the unmodified object gets returned.
 <hr />
 
 20. What's the output?
-```
+```javascript
 function checkAge(age) {
   if (age < 18) {
     const message = "Sorry, you're too young.";
@@ -601,7 +601,7 @@ Variables with the `const` and `let` keyword are _block-scoped_. A block is anyt
 <hr />
 
 21. What's the output?
-```
+```javascript
 // module.js
 export default () => 'Hello world';
 export const name = 'Lydia';
@@ -630,7 +630,7 @@ The `data` object has a `default` property for the default export, other propert
 <hr />
 
 22. What's the output?
-```
+```javascript
 function giveLydiaPizza() {
   return 'Here is pizza!';
 }
@@ -658,7 +658,7 @@ Regular functions, such as the `giveLydiaPizza` function, have a `prototype` pro
 <hr />
 
 23. What's the output?
-```
+```javascript
 const person = {
   name: 'Lydia',
   age: 21,
@@ -693,7 +693,7 @@ The second subarray is `[ "age", 21 ]`, with `x` equal to `"age"`, and `y` equal
 <hr />
 
 24. What's the output?
-```
+```javascript
 function nums(a, b) {
   if (a > b) console.log('a is bigger');
   else console.log('b is bigger');
@@ -730,7 +730,7 @@ This means that `a + b` is never reached, since a function stops running after t
 <hr />
 
 25. What's the output?
-```
+```javascript
 const myPromise = () => Promise.resolve('I have resolved!');
 
 function firstFunction() {
@@ -771,7 +771,7 @@ This means that it waited for the `myPromise` to resolve with the value `I have 
 <hr />
 
 26. What's the output?
-```
+```javascript
 Promise.resolve(5);
 ```
 - A: `5`
@@ -793,7 +793,7 @@ In this case, we just passed the numerical value `5`. It returns a resolved prom
 <hr />
 
 27. What's the output?
-```
+```javascript
 function compareMembers(person1, person2 = person) {
   if (person1 !== person2) {
     console.log('Not the same!');
@@ -829,7 +829,7 @@ The code block in the `else` statement gets run, and `They are the same!` gets l
 <hr />
 
 28. What's the output?
-```
+```javascript
 let config = {
   alert: setInterval(() => {
     console.log('Alert!');
@@ -904,7 +904,7 @@ We get to the last line of `funcTwo`, which logs `Last line!` to the console. No
 <hr />
 
 30. Which of the following will modify the `person` object?
-```
+```javascript
 const person = { name: 'Lydia Hallie' };
 
 Object.seal(person);
@@ -928,7 +928,7 @@ However, you can still modify the value of existing properties.
 <hr />
 
 31. Which of the following will modify the `person` object?
-```
+```javascript
 const person = {
   name: 'Lydia Hallie',
   address: {
