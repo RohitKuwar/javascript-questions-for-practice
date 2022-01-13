@@ -611,11 +611,22 @@ import * as data from './module';
 
 console.log(data);
 ```
-**Ans:** `{ default: function default(), name: "Lydia" }`
+- A: `{ default: function default(), name: "Lydia" }`
+- B: `{ default: function default() }`
+- C: `{ default: "Hello world", name: "Lydia" }`
+- D: Global object of `module.js`
 
-With the `import * as name` syntax, we import all exports from the `module.js` file into the `index.js` file as a new object called `data` is created. In the `module.js` file, there are two exports: the default export, and a named export. The default export is a function which returns the string `"Hello World"`, and the named export is a variable called `name` which has the value of the string `"Lydia"`.
+<details><summary><b>Answer</b></summary>
+<p>
+
+#### Answer: A
+
+With the `import * as name` syntax, we import _all exports_ from the `module.js` file into the `index.js` file as a new object called `data` is created. In the `module.js` file, there are two exports: the default export, and a named export. The default export is a function which returns the string `"Hello World"`, and the named export is a variable called `name` which has the value of the string `"Lydia"`.
 
 The `data` object has a `default` property for the default export, other properties have the names of the named exports and their corresponding values.
+
+</p>
+</details>
 <hr />
 
 22. What's the output?
@@ -630,9 +641,20 @@ const giveLydiaChocolate = () =>
 console.log(giveLydiaPizza.prototype);
 console.log(giveLydiaChocolate.prototype);
 ```
-**Ans:** `{ constructor: ...}` `undefined`
+- A: `{ constructor: ...}` `{ constructor: ...}`
+- B: `{}` `{ constructor: ...}`
+- C: `{ constructor: ...}` `{}`
+- D: `{ constructor: ...}` `undefined`
+
+<details><summary><b>Answer</b></summary>
+<p>
+
+#### Answer: D
 
 Regular functions, such as the `giveLydiaPizza` function, have a `prototype` property, which is an object (prototype object) with a `constructor` property. Arrow functions however, such as the `giveLydiaChocolate` function, do not have this `prototype` property. `undefined` gets returned when trying to access the `prototype` property using `giveLydiaChocolate.prototype`.
+
+</p>
+</details>
 <hr />
 
 23. What's the output?
@@ -669,16 +691,29 @@ function nums(a, b) {
 console.log(nums(4, 2));
 console.log(nums(1, 2));
 ```
-**Ans:** `a is bigger`, `undefined` and `b is bigger`, `undefined`
+- A: `a is bigger`, `6` and `b is bigger`, `3`
+- B: `a is bigger`, `undefined` and `b is bigger`, `undefined`
+- C: `undefined` and `undefined`
+- D: `SyntaxError`
 
-In JavaScript, we don't have to write the semicolon (`;`) explicitly, however the JavaScript engine still adds them after statements. This is called Automatic Semicolon Insertion. A statement can for example be variables, or keywords like `throw`, `return`, `break`, etc.
+<details><summary><b>Answer</b></summary>
+<p>
 
-Here, we wrote a `return` statement, and another value `a + b` on a new line. However, since it's a new line, the engine doesn't know that it's actually the value that we wanted to return. Instead, it automatically added a semicolon after `return`. You could see this as:
-```
+#### Answer: B
+
+In JavaScript, we don't _have_ to write the semicolon (`;`) explicitly, however the JavaScript engine still adds them after statements. This is called **Automatic Semicolon Insertion**. A statement can for example be variables, or keywords like `throw`, `return`, `break`, etc.
+
+Here, we wrote a `return` statement, and another value `a + b` on a _new line_. However, since it's a new line, the engine doesn't know that it's actually the value that we wanted to return. Instead, it automatically added a semicolon after `return`. You could see this as:
+
+```javascript
 return;
 a + b;
 ```
+
 This means that `a + b` is never reached, since a function stops running after the `return` keyword. If no value gets returned, like here, the function returns `undefined`. Note that there is no automatic insertion after `if/else` statements!
+
+</p>
+</details>
 <hr />
 
 25. What's the output?
@@ -698,7 +733,15 @@ async function secondFunction() {
 firstFunction();
 secondFunction();
 ```
-**Ans:** `second`, `I have resolved!` and `I have resolved!`, `second`
+- A: `I have resolved!`, `second` and `I have resolved!`, `second`
+- B: `second`, `I have resolved!` and `second`, `I have resolved!`
+- C: `I have resolved!`, `second` and `second`, `I have resolved!`
+- D: `second`, `I have resolved!` and `I have resolved!`, `second`
+
+<details><summary><b>Answer</b></summary>
+<p>
+
+#### Answer: D
 
 With a promise, we basically say _I want to execute this function, but I'll put it aside for now while it's running since this might take a while. Only when a certain value is resolved (or rejected), and when the call stack is empty, I want to use this value._
 
@@ -709,17 +752,31 @@ In the `firstFunction`, we (sort of) put the myPromise function aside while it w
 With the await keyword in `secondFunction`, we literally pause the execution of an async function until the value has been resolved before moving to the next line.
 
 This means that it waited for the `myPromise` to resolve with the value `I have resolved`, and only once that happened, we moved to the next line: `second` got logged.
+
+</p>
+</details>
 <hr />
 
 26. What's the output?
 ```
 Promise.resolve(5);
 ```
-**Ans:** `Promise {<fulfilled>: 5}`
+- A: `5`
+- B: `Promise {<pending>: 5}`
+- C: `Promise {<fulfilled>: 5}`
+- D: `Error`
+
+<details><summary><b>Answer</b></summary>
+<p>
+
+#### Answer: C
 
 We can pass any type of value we want to `Promise.resolve`, either a promise or a non-promise. The method itself returns a promise with the resolved value (`<fulfilled>`). If you pass a regular function, it'll be a resolved promise with a regular value. If you pass a promise, it'll be a resolved promise with the resolved value of that passed promise.
 
 In this case, we just passed the numerical value `5`. It returns a resolved promise with the value `5`.
+
+</p>
+</details>
 <hr />
 
 27. What's the output?
@@ -736,7 +793,15 @@ const person = { name: 'Lydia' };
 
 compareMembers(person);
 ```
-**Ans:** `They are the same!`
+- A: `Not the same!`
+- B: `They are the same!`
+- C: `ReferenceError`
+- D: `SyntaxError`
+
+<details><summary><b>Answer</b></summary>
+<p>
+
+#### Answer: B
 
 Objects are passed by reference. When we check objects for strict equality (`===`), we're comparing their references.
 
@@ -745,6 +810,9 @@ We set the default value for `person2` equal to the `person` object, and passed 
 This means that both values have a reference to the same spot in memory, thus they are equal.
 
 The code block in the `else` statement gets run, and `They are the same!` gets logged.
+
+</p>
+</details>
 <hr />
 
 28. What's the output?
@@ -757,9 +825,24 @@ let config = {
 
 config = null;
 ```
-**Ans:** `The setInterval callback will still be called every second`
+- A: The `setInterval` callback won't be invoked
+- B: The `setInterval` callback gets invoked once
+- C: The `setInterval` callback will still be called every second
+- D: We never invoked `config.alert()`, config is `null`
 
-Normally when we set objects equal to `null`, those objects get garbage collected as there is no reference anymore to that object. However, since the callback function within `setInterval` is an arrow function (thus bound to the `config` object), the callback function still holds a reference to the `config` object. As long as there is a reference, the object won't get garbage collected. Since this is an interval, setting `config` to `null` or `delete`-ing `config.alert` won't garbage-collect the interval, so the interval will still be called. It should be cleared with `clearInterval(config.alert)` to remove it from memory. Since it was not cleared, the `setInterval` callback function will still get invoked every 1000ms (1s).
+<details><summary><b>Answer</b></summary>
+<p>
+
+#### Answer: C
+
+Normally when we set objects equal to `null`, those objects get _garbage collected_ as there is no reference anymore to that object. However, since the callback function within `setInterval` is an arrow function (thus bound to the `config` object), the callback function still holds a reference to the `config` object. 
+As long as there is a reference, the object won't get garbage collected. 
+Since this is an interval, setting `config` to `null` or `delete`-ing `config.alert` won't garbage-collect the interval, so the interval will still be called. 
+It should be cleared with `clearInterval(config.alert)` to remove it from memory.
+Since it was not cleared, the `setInterval` callback function will still get invoked every 1000ms (1s).
+
+</p>
+</details>
 <hr />
 
 29. What's the output?
@@ -782,21 +865,28 @@ async function funcTwo() {
 funcOne();
 funcTwo();
 ```
-**Ans:** `Last line 1! Promise 2! Last line 2! Promise 1! Timeout 1! Timeout 2!`
+- A: `Promise! Last line! Promise! Last line! Last line! Promise!`
+- B: `Last line! Timeout! Promise! Last line! Timeout! Promise!`
+- C: `Promise! Last line! Last line! Promise! Timeout! Timeout!`
+- D: `Last line! Promise! Promise! Last line! Timeout! Timeout!`
 
-First, we invoke `funcOne`. On the first line of `funcOne`, we call the asynchronous `setTimeout` function, from which the callback is sent to the Web API. (see my article on the event loop here.)
+<details><summary><b>Answer</b></summary>
+<p>
 
-Then we call the `myPromise` promise, which is an asynchronous operation.
+#### Answer: D
 
-Both the promise and the timeout are asynchronous operations, the function keeps on running while it's busy completing the promise and handling the `setTimeout` callback. This means that `Last line 1!` gets logged first, since this is not an asynchonous operation.
+First, we invoke `funcOne`. On the first line of `funcOne`, we call the `myPromise` promise, which is an _asynchronous_ operation. While the engine is busy completing the promise, it keeps on running the function `funcOne`. The next line is the _asynchronous_ `setTimeout` function, from which the callback is sent to the Web API. (see my article on the event loop <a href="https://dev.to/lydiahallie/javascript-visualized-event-loop-3dif">here</a>.)
 
-Since the callstack is not empty yet, the `setTimeout` function and promise in `funcOne` cannot get added to the callstack yet.
+Both the promise and the timeout are asynchronous operations, the function keeps on running while it's busy completing the promise and handling the `setTimeout` callback. This means that `Last line!` gets logged first, since this is not an asynchonous operation. This is the last line of `funcOne`, the promise resolved, and `Promise!` gets logged. However, since we're invoking `funcTwo()`, the call stack isn't empty, and the callback of the `setTimeout` function cannot get added to the callstack yet.
 
-In `funcTwo`, the variable `res` gets `Promise` because `Promise.resolve(Promise.resolve('Promise'))` is equivalent to `Promise.resolve('Promise')` since resolving a promise just resolves it's value. The `await` in this line stops the execution of the function until it receives the resolution of the promise and then keeps on running synchronously until completion, so `Promise 2!` and then `Last line 2!` are logged and the `setTimeout` is sent to the Web API.
+In `funcTwo` we're, first _awaiting_ the myPromise promise. With the `await` keyword, we pause the execution of the function until the promise has resolved (or rejected). Then, we log the awaited value of `res` (since the promise itself returns a promise). This logs `Promise!`.
 
-Then the call stack is empty. Promises are microtasks so they are resolved first when the call stack is empty so `Promise 1!` gets to be logged.
+The next line is the _asynchronous_ `setTimeout` function, from which the callback is sent to the Web API.
 
-Now, since `funcTwo` popped off the call stack, the call stack is empty. The callbacks waiting in the queue `(() => console.log("Timeout 1!")` from `funcOne`, and `() => console.log("Timeout 2!")` from `funcTwo`) get added to the call stack one by one. The first callback logs` Timeout 1!`, and gets popped off the stack. Then, the second callback logs `Timeout 2!`, and gets popped off the stack.
+We get to the last line of `funcTwo`, which logs `Last line!` to the console. Now, since `funcTwo` popped off the call stack, the call stack is empty. The callbacks waiting in the queue (`() => console.log("Timeout!")` from `funcOne`, and `() => console.log("Timeout!")` from `funcTwo`) get added to the call stack one by one. The first callback logs `Timeout!`, and gets popped off the stack. Then, the second callback logs `Timeout!`, and gets popped off the stack. This logs `Last line! Promise! Promise! Last line! Timeout! Timeout!`
+
+</p>
+</details>
 <hr />
 
 30. Which of the following will modify the `person` object?
@@ -805,11 +895,22 @@ const person = { name: 'Lydia Hallie' };
 
 Object.seal(person);
 ```
-**Ans:** `person.name = "Evan Bacon"`
+- A: `person.name = "Evan Bacon"`
+- B: `person.age = 21`
+- C: `delete person.name`
+- D: `Object.assign(person, { age: 21 })`
 
-With `Object.seal` we can prevent new properies from being added, or existing properties to be removed.
+<details><summary><b>Answer</b></summary>
+<p>
+
+#### Answer: A
+
+With `Object.seal` we can prevent new properies from being _added_, or existing properties to be _removed_.
 
 However, you can still modify the value of existing properties.
+
+</p>
+</details>
 <hr />
 
 31. Which of the following will modify the `person` object?
@@ -823,9 +924,20 @@ const person = {
 
 Object.freeze(person);
 ```
-**Ans:** `person.address.street = "101 Main St"`
+- A: `person.name = "Evan Bacon"`
+- B: `delete person.address`
+- C: `person.address.street = "101 Main St"`
+- D: `person.pet = { name: "Mara" }`
 
-The `Object.freeze` method freezes an object. No properties can be added, modified, or removed.
+<details><summary><b>Answer</b></summary>
+<p>
 
-However, it only shallowly freezes the object, meaning that only direct properties on the object are frozen. If the property is another object, like `address` in this case, the properties on that object aren't frozen, and can be modified.
+#### Answer: C
+
+The `Object.freeze` method _freezes_ an object. No properties can be added, modified, or removed.
+
+However, it only _shallowly_ freezes the object, meaning that only _direct_ properties on the object are frozen. If the property is another object, like `address` in this case, the properties on that object aren't frozen, and can be modified.
+
+</p>
+</details>
 <hr />
