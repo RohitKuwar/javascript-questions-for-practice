@@ -859,25 +859,26 @@ Since it was not cleared, the `setInterval` callback function will still get inv
 <hr />
 
 29. What's the output?
-```
-const myPromise = Promise.resolve(Promise.resolve('Promise'));
+```javascript
+const myPromise = Promise.resolve(Promise.resolve('Promise!'));
 
 function funcOne() {
-  setTimeout(() => console.log('Timeout 1!'), 0);
-  myPromise.then(res => res).then(res => console.log(`${res} 1!`));
-  console.log('Last line 1!');
+  myPromise.then(res => res).then(res => console.log(res));
+  setTimeout(() => console.log('Timeout!'), 0);
+  console.log('Last line!');
 }
 
 async function funcTwo() {
   const res = await myPromise;
-  console.log(`${res} 2!`)
-  setTimeout(() => console.log('Timeout 2!'), 0);
-  console.log('Last line 2!');
+  console.log(await res);
+  setTimeout(() => console.log('Timeout!'), 0);
+  console.log('Last line!');
 }
 
 funcOne();
 funcTwo();
 ```
+
 - A: `Promise! Last line! Promise! Last line! Last line! Promise!`
 - B: `Last line! Timeout! Promise! Last line! Timeout! Promise!`
 - C: `Promise! Last line! Last line! Promise! Timeout! Timeout!`
