@@ -668,7 +668,16 @@ for (const [x, y] of Object.entries(person)) {
   console.log(x, y);
 }
 ```
-**Ans:** `name` `Lydia` and `age` `21`
+
+- A: `name` `Lydia` and `age` `21`
+- B: `["name", "Lydia"]` and `["age", 21]`
+- C: `["name", "age"]` and `undefined`
+- D: `Error`
+
+<details><summary><b>Answer</b></summary>
+<p>
+
+#### Answer: A
 
 `Object.entries(person)` returns an array of nested arrays, containing the keys and objects:
 
@@ -676,7 +685,11 @@ for (const [x, y] of Object.entries(person)) {
 
 Using the `for-of` loop, we can iterate over each element in the array, the subarrays in this case. We can destructure the subarrays instantly in the for-of loop, using `const [x, y]`. `x` is equal to the first element in the subarray, `y` is equal to the second element in the subarray.
 
-The first subarray is `[ "name", "Lydia" ]`, with `x` equal to `"name"`, and `y` equal to `"Lydia"`, which get logged. The second subarray is `[ "age", 21 ]`, with `x` equal to `"age"`, and `y` equal to `21`, which get logged.
+The first subarray is `[ "name", "Lydia" ]`, with `x` equal to `"name"`, and `y` equal to `"Lydia"`, which get logged.
+The second subarray is `[ "age", 21 ]`, with `x` equal to `"age"`, and `y` equal to `21`, which get logged.
+
+</p>
+</details>
 <hr />
 
 24. What's the output?
