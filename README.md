@@ -985,3 +985,47 @@ f1();
 </p>
 </details>
 <hr />
+
+33. What's the output?
+```javascript
+function f1() {
+    console.log('f1');
+}
+
+function f2() {
+    console.log('f2');
+}
+
+function f3() {
+    console.log('f3');
+}
+
+function f4() {
+    console.log('f4');
+}
+
+console.log("Let's do it!");
+
+setTimeout(function() {f1();}, 0);
+
+f4();
+
+setTimeout(function() {f2();}, 5000);
+
+setTimeout(function() {f3();}, 3000);
+```
+- A: Let's do it!, f4, f1, f3, f2
+- B: Let's do it!, f1, f3, f2, f4
+- C: Let's do it!, f1, f2, f3, f4
+- D: Let's do it!, f1, f4, f2, f3
+
+<details><summary><b>Answer</b></summary>
+<p>
+
+#### Answer: A
+
+"Let's do it!" is executed by Execution Stack. f1() calls browser API, so gets added to Callback Queue. f4() gets added to Execution Stack and is executed. Event loop finds a callback function f1() in callback queue & executes it. f2() calls browser API and gets added to Callback Queue. Similarly f3() is added to callback queue. Now there is nothing in Execution Stack, so event loop checks & finds f2() & f3() callback functions in callback queue. f3() goes back into the stack after timeout, and gets executed. f2() too goes back into the stack after timeout, and gets executed.
+
+</p>
+</details>
+<hr />
