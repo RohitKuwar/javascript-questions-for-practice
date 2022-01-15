@@ -955,3 +955,33 @@ However, it only _shallowly_ freezes the object, meaning that only _direct_ prop
 </p>
 </details>
 <hr />
+
+32. What's the output?
+```javascript
+function f1() {
+    console.log('f1');
+}
+
+console.log("Let's do it!");
+
+setTimeout(function() {console.log('in settimeout');}, 0);
+
+f1();
+f1();
+f1();
+f1();
+```
+- A: Let's do it!, in settimeout, f1, f1, f1, f1
+- B: Let's do it!, f1, f1, f1, f1, in settimeout
+- C: Let's do it!, f1, , in settimeout, f1, f1, f1
+
+<details><summary><b>Answer</b></summary>
+<p>
+
+#### Answer: B
+
+"Let's do it!" gets added to Execution stack & gets executed first. Then f1() functions are called which are added to Execution stack & are executed. And finally setTimeout() function is called which is a Browser API call added to & executed from Job Queue by callback function
+
+</p>
+</details>
+<hr />
