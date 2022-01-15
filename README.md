@@ -980,7 +980,10 @@ f1();
 
 #### Answer: B
 
-"Let's do it!" gets added to Execution stack & gets executed first. Then f1() functions are called which are added to Execution stack & are executed. And finally setTimeout() function is called which is a Browser API call added to & executed from Job Queue by callback function
+Explanation: 
+- "Let's do it!" gets added to Execution stack & gets executed first
+- Then f1() functions are called which are added to Execution stack & are executed
+- And finally setTimeout() function is called which is a Browser API call added to & executed from Job Queue by callback function
 
 </p>
 </details>
@@ -1023,8 +1026,69 @@ setTimeout(function() {f3();}, 3000);
 <p>
 
 #### Answer: A
+Explanation:
+- "Let's do it!" is executed by Execution Stack
+- f1() calls browser API, so gets added to Callback Queue
+- f4() gets added to Execution Stack and is executed
+- Event loop finds a callback function f1() in callback queue & executes it
+- f2() calls browser API and gets added to Callback Queue. Similarly f3() is added to callback queue
+- Now there is nothing in Execution Stack, so event loop checks & finds f2() & f3() callback functions in callback queue
+- f3() goes back into the stack after timeout, and gets executed
+- f2() too goes back into the stack after timeout, and gets executed
 
-"Let's do it!" is executed by Execution Stack. f1() calls browser API, so gets added to Callback Queue. f4() gets added to Execution Stack and is executed. Event loop finds a callback function f1() in callback queue & executes it. f2() calls browser API and gets added to Callback Queue. Similarly f3() is added to callback queue. Now there is nothing in Execution Stack, so event loop checks & finds f2() & f3() callback functions in callback queue. f3() goes back into the stack after timeout, and gets executed. f2() too goes back into the stack after timeout, and gets executed.
+</p>
+</details>
+<hr />
+
+34. What's the output?
+```javascript
+const f1 = () => console.log('f1');
+const f2 = () => console.log('f2');
+const f3 = () => console.log('f3');
+const f4 = () => console.log('f4');
+
+f4();
+
+setTimeout(f1, 0);
+
+new Promise((resolve, reject) => {
+    resolve('Boom');
+}).then(result => console.log(result));
+
+setTimeout(f2, 2000);
+
+new Promise((resolve, reject) => {
+    resolve('Sonic');
+}).then(result => console.log(result));
+
+setTimeout(f3, 0);
+
+new Promise((resolve, reject) => {
+    resolve('Albert');
+}).then(result => console.log(result));
+```
+- A: f4, Boom, Sonic, Albert, f1, f3, f2
+- B: f4, f1, Boom, f2, Sonic, f3, Albert
+- C: f4, Boom, Sonic, Albert, f3, f1, f2
+- D: f4, Boom, Sonic, Albert, f1, f2, f3
+
+<details><summary><b>Answer</b></summary>
+<p>
+
+#### Answer: A
+
+Explanation:
+- f4() is moved to execution stack & executed initially
+- f1() calls browser API, so it is moved to callback queue
+- Promise for Boom is made and is moved to job queue. Since, there is nothing in execution stack, job queue is prioritized and moved back to execution stack for execution
+- f2() calls browser API, so it is moved to callback queue
+- Another Promise for Sonic is made and moved to job queue. And as there is nothing in execution stack, job queue gets prioritized & promise is moved to execution stack and executed
+- f3() calls browser API, and is moved to callback queue
+- Another Promise for Albert is made, moved to job queue, gets prioritized, moved to execution stack, gets executed
+- Now there is nothing in execution stack, event loops finds f1() & f3() in callback queue
+- Both f1() and f3() have same timeout of 0 ms, but since queue is FIFO data structure, f1() being added first to the queue, gets moved to execution stack first
+- f1() gets executed, f3() follows f1() to execution stack and is executed
+- Now f2() completes its timeout and is moved for execution in execution stack
 
 </p>
 </details>
